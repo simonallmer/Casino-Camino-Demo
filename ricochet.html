@@ -32,7 +32,12 @@
             user-select: none;
             background: radial-gradient(circle at center, #0f2e22 0%, #000 100%);
             transition: background 1s ease;
+            overflow-x: hidden;
+            overflow-y: auto;
+            align-items: flex-start;
+            padding-top: 20px;
         }
+
 
         #game-container {
             position: relative;
@@ -48,7 +53,48 @@
             box-shadow:
                 inset 0 0 150px #000,
                 0 0 50px rgba(0, 0, 0, 0.8);
-            transition: border-color 0.5s ease;
+            transition: border-color 0.5s ease, transform 0.3s ease;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 600px) {
+            #game-container {
+                padding: 10px;
+                border-radius: 10px;
+                width: calc(100% - 20px);
+            }
+
+            .hud {
+                padding: 10px;
+                margin-bottom: 10px;
+            }
+
+            .label {
+                font-size: 0.6rem;
+            }
+
+            .value {
+                font-size: 1.1rem;
+            }
+
+            #wheel-canvas {
+                width: 280px !important;
+                height: 280px !important;
+            }
+
+            .inventory {
+                gap: 5px;
+            }
+
+            .inv-slot {
+                width: 35px;
+                height: 45px;
+            }
+
+            .btn-main {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
         }
 
         /* UI Elements */
@@ -1481,7 +1527,20 @@
             }
         });
 
+        // Mobile Scaling Logic
+        function setMobileScale() {
+            const container = document.getElementById('game-container');
+            if (container && window.innerWidth < 620) {
+                const scale = (window.innerWidth - 10) / 620;
+                container.style.transform = `scale(${scale})`;
+                container.style.transformOrigin = 'center center';
+            } else if (container) {
+                container.style.transform = 'none';
+            }
+        }
+
+        window.addEventListener('resize', setMobileScale);
+        setMobileScale();
     </script>
 </body>
-
 </html>
