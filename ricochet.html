@@ -32,10 +32,6 @@
             user-select: none;
             background: radial-gradient(circle at center, #0f2e22 0%, #000 100%);
             transition: background 1s ease;
-            overflow-x: hidden;
-            overflow-y: auto;
-            align-items: flex-start;
-            padding-top: 20px;
         }
 
 
@@ -56,15 +52,20 @@
             transition: border-color 0.5s ease, transform 0.3s ease;
             margin: 0 auto;
         }
-
-        @media (max-width: 600px) {
-            #game-container {
-                padding: 10px;
-                border-radius: 10px;
-                width: calc(100% - 20px);
+        @media (max-width: 650px) {
+            body {
+                align-items: flex-start;
+                padding-top: 50px;
+                padding-bottom: 60px;
             }
 
-            .hud {
+            #game-container {
+                padding: 10px 5px;
+                border-radius: 10px;
+                width: calc(100% - 10px);
+            }
+
+            .hud-item {
                 padding: 10px;
                 margin-bottom: 10px;
             }
@@ -78,8 +79,8 @@
             }
 
             #wheel-canvas {
-                width: 280px !important;
-                height: 280px !important;
+                width: 260px !important;
+                height: 260px !important;
             }
 
             .inventory {
@@ -1531,9 +1532,9 @@
         function setMobileScale() {
             const container = document.getElementById('game-container');
             if (container && window.innerWidth < 620) {
-                const scale = (window.innerWidth - 10) / 620;
+                const scale = (window.innerWidth - 10) / 630;
                 container.style.transform = `scale(${scale})`;
-                container.style.transformOrigin = 'center center';
+                container.style.transformOrigin = 'top center';
             } else if (container) {
                 container.style.transform = 'none';
             }

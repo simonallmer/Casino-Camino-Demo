@@ -52,10 +52,21 @@
             overflow: hidden;
             user-select: none;
             background: radial-gradient(circle at center, #0f2e22 0%, #000 100%);
-            overflow-x: hidden;
-            overflow-y: auto;
-            align-items: flex-start;
-            padding-top: 20px;
+        }
+
+        @media (max-width: 650px) {
+            body {
+                align-items: flex-start;
+                padding-top: 50px;
+                padding-bottom: 80px;
+                overflow-y: auto;
+            }
+
+            .nav-btn {
+                top: 10px;
+                padding: 8px 15px;
+                font-size: 0.7rem;
+            }
         }
 
 
@@ -897,7 +908,7 @@
             if (container && window.innerWidth < 650) {
                 const scale = (window.innerWidth - 10) / 650;
                 container.style.transform = `scale(${scale})`;
-                container.style.transformOrigin = 'center center';
+                container.style.transformOrigin = 'top center';
             } else if (container) {
                 container.style.transform = 'none';
             }
